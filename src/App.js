@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import GenerateDesc from './utils/generateDesc';
 
 function App() {
   const [data, setData] = useState(null);
@@ -19,6 +20,7 @@ function App() {
     <div>
       {data && (
         <div>
+          <GenerateDesc/>
           <h2 className="title">{data.results[4].title}</h2>
           <p className="content">{data.results[4].content}</p>
         </div>
