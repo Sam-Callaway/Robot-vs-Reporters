@@ -1,8 +1,11 @@
 import logo from './logo.svg';
 import './App.css';
+import newsscraper from './components/newsscraper';
 
 function App() {
+  newsscraper('https://www.google.co.uk/')
   return (
+    
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
