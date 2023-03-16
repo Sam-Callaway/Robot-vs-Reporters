@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-function App() {
+function GenerateDesc() {
   // Getters/setters for article header and description
   const [articleHeader, setArticleHeader] = useState('');
   const [description, setDescription] = useState('');
@@ -60,5 +60,4 @@ function App() {
   );
 }
 
-export default App;
-
+export default GenerateDesc;
