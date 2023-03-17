@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import env from 'react-dotenv';
+
 
 function GenerateDesc(props) {
   // Getters/setters for article header and description
   // const [articleHeader, setArticleHeader] = useState('');
   const [description, setDescription] = useState('');
 
-  const OPENAI_KEY = process.env.REACT_APP_OPENAI_KEY;
+  const OPENAI_KEY = env.REACT_APP_OPENAI_KEY;
 
   // Generate description function
   const handleGenerateDescription = async () => {
