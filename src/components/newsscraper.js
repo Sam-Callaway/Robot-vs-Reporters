@@ -1,4 +1,4 @@
-import React from 'react';
+
 import * as cheerio from 'cheerio';
 
 
@@ -8,7 +8,7 @@ function newsscraper(articleUrl){
   
 
   // Fetch the article content
-  fetch(articleUrl)
+  fetch(articleUrl,{method:'GET'})
     .then(response => response.text()) // Convert response to text
     .then(html => {
       // Parse the HTML response using DOMParser
