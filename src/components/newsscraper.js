@@ -3,10 +3,12 @@ import * as cheerio from 'cheerio';
 
 
 
+
+
+
+
 function newsscraper(articleUrl){
 // URL of the article to fetch
-  
-
   // Fetch the article content
   fetch(articleUrl,{method:'GET'})
     .then(response => response.text()) // Convert response to text
