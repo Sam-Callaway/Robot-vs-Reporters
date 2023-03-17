@@ -24,15 +24,12 @@ function App() {
       {data && (
         <div>
           <h2 className="title">{data.results[1].title}</h2>
-          <Row>
-          <Col>
+        
           <GenerateDesc title={title}/> 
-          </Col>
-          <Col>
+          
             <h2>Journalist Description: </h2>
             <p className="content">{data.results[4].content}</p>
-          </Col>
-          </Row>
+          
         </div>
       )}
     </div>
