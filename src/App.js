@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import GenerateDesc from './utils/generateDesc';
+import { Col, Row } from 'react-bootstrap';
 
 function App() {
   const [data, setData] = useState(null);
+  const [title, setTitle] = useState(null);
 
   useEffect(() => {
     fetch('https://newsdata.io/api/1/news?apikey=pub_189185d557591cb72662c5b99d3dc385d3f91&language=en')
@@ -10,6 +12,7 @@ function App() {
       .then(data => {
         console.log(data);
         setData(data);
+        setTitle(data.results[1].title);
       })
       .catch(error => {
         console.error('Error fetching data:', error);
@@ -20,9 +23,16 @@ function App() {
     <div>
       {data && (
         <div>
-          <GenerateDesc />
-          <h2 className="title">{data.results[4].title}</h2>
-          <p className="content">{data.results[4].content}</p>
+          <h2 className="title">{data.results[1].title}</h2>
+          <Row>
+          <Col>
+          <GenerateDesc title={title}/> 
+          </Col>
+          <Col>
+            <h2>Journalist Description: </h2>
+            <p className="content">{data.results[4].content}</p>
+          </Col>
+          </Row>
         </div>
       )}
     </div>

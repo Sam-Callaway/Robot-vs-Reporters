@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-function GenerateDesc() {
+function GenerateDesc(props) {
   // Getters/setters for article header and description
-  const [articleHeader, setArticleHeader] = useState('');
+  // const [articleHeader, setArticleHeader] = useState('');
   const [description, setDescription] = useState('');
 
   const OPENAI_KEY = process.env.REACT_APP_OPENAI_KEY;
@@ -18,7 +18,7 @@ function GenerateDesc() {
         {
           // Determine api settings
           "model": "gpt-3.5-turbo",
-          "messages": [{"role": "user", "content": `Generate an article description from from the following header: ${articleHeader}!`}],
+          "messages": [{"role": "user", "content": `Generate an article description from from the following header: ${props.title}!`}],
         },
         {
           headers: {
@@ -39,20 +39,12 @@ function GenerateDesc() {
 
   return (
     <div>
-      <label htmlFor="articleHeader">Enter news article header:</label>
-      {/* Input for the news article */}
-      <input
-        type="text"
-        id="articleHeader"
-        value={articleHeader}
-        onChange={(event) => setArticleHeader(event.target.value)}
-      />
       <br />
       <button onClick={handleGenerateDescription}>Generate Description</button>
       <br />
       {description && (
         <>
-          <h2>Generated Description:</h2>
+          <h2>ChatGPT Description:</h2>
           <p>{description}</p>
         </>
       )}
