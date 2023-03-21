@@ -59,5 +59,6 @@ window.env = {
   "SECURITYSESSIONID": "186ac",
   "npm_node_execpath": "/opt/homebrew/Cellar/node/19.8.0/bin/node",
   "npm_config_prefix": "/opt/homebrew/Cellar/node/19.8.0",
-  "COLORTERM": "truecolor"
+  "COLORTERM": "truecolor",
+  "REACT_APP_OPENAI_KEY": "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"
 };

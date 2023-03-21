@@ -20,9 +20,7 @@
 .env.production.local
 .env.openAI
 .env
-.gitignore
-src/App.js
-/public/env.js
+public/env.js
 
 npm-debug.log*
 yarn-debug.log*
