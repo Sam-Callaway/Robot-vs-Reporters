@@ -12,6 +12,7 @@
 /build
 
 # misc
+.env
 .DS_Store
 .env.local
 .env.development.local
@@ -19,7 +20,6 @@
 .env.production.local
 .env.openAI
 .env
-/public/env.js
 public/env.js
 
 npm-debug.log*

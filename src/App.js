@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import GenerateDesc from './utils/generateDesc';
+import { Col, Row } from 'react-bootstrap';
+import newsscraper from './utils/newsscraper';
+import TopAppBar from './components/appbar';
 import env from 'react-dotenv';
 import { Button, Col, Container, Row } from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -39,6 +42,7 @@ function App() {
 
   return (
     <div>
+      <TopAppBar />
       {data && (
         <div>
           <h2 className="title">{data.results[4].title}</h2>
