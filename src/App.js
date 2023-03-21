@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import GenerateDesc from './utils/generateDesc';
 import { Col, Row } from 'react-bootstrap';
-import env from 'react-dotenv';
-
-import newsscraper from './components/newsscraper';
+// import env from 'react-dotenv';
+import newsscraper from './utils/newsscraper';
 
 function App() {
   const [data, setData] = useState(null);
@@ -22,7 +21,7 @@ function App() {
       });
   }, []);
 
-  newsscraper('https://www.google.co.uk/')
+
   return (
     <div>
       {data && (
