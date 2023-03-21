@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import GenerateDesc from './utils/generateDesc';
 import { Col, Row } from 'react-bootstrap';
-import env from 'react-dotenv';
-
+// import env from 'react-dotenv';
+import newsscraper from './utils/newsscraper';
 
 function App() {
   const [data, setData] = useState(null);
@@ -20,6 +20,7 @@ function App() {
         console.error('Error fetching data:', error);
       });
   }, []);
+
 
   return (
     <div>
