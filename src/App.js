@@ -3,6 +3,7 @@ import GenerateDesc from './utils/generateDesc';
 import { Col, Row } from 'react-bootstrap';
 // import env from 'react-dotenv';
 import newsscraper from './utils/newsscraper';
+import TopAppBar from './components/appbar';
 
 function App() {
   const [data, setData] = useState(null);
@@ -24,6 +25,7 @@ function App() {
 
   return (
     <div>
+      <TopAppBar />
       {data && (
         <div>
           <h2 className="title">{data.results[1].title}</h2>
