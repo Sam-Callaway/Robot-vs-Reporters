@@ -19,6 +19,7 @@
 .env.production.local
 .env.openAI
 .env
+/public/env.js
 
 npm-debug.log*
 yarn-debug.log*
