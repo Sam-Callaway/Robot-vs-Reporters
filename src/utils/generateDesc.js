@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import env from 'react-dotenv';
+import { Button, Col, Container, Row } from "react-bootstrap";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 function GenerateDesc(props) {
@@ -42,7 +44,7 @@ function GenerateDesc(props) {
   return (
     <div>
       <br />
-      <button onClick={handleGenerateDescription}>Generate Description</button>
+      <Button onClick={handleGenerateDescription}>Generate Description</Button>
       <br />
       {description && (
         <>
