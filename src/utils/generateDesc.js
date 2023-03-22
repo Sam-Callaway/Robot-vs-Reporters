@@ -22,7 +22,7 @@ function GenerateDesc(props) {
         {
           // Determine api settings
           "model": "gpt-3.5-turbo",
-          "messages": [{"role": "user", "content": `Generate an article description in the style of a journalist from from the following header: ${props.title}!`}],
+          "messages": [{"role": "user", "content": `Generate a 80 word article description in the style of a journalist from from the following header: ${props.title}!`}],
         },
         {
           headers: {
