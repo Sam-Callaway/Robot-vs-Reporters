@@ -186,7 +186,7 @@ function RvsR(props) {
                     </Grid>
                     <Grid xs={6}>
                     <Item>
-                    <GenerateDesc title={title} />
+                    <GenerateDesc gptIsLoaded = {gptIsLoaded} title={title} />
                     <Button variant="outlined" onClick={checkAnswer} id="chatGPT">This is the real description!</Button>
                     </Item>
                     </Grid>
@@ -200,7 +200,7 @@ function RvsR(props) {
                     > 
                     <Grid xs={6}>
                     <Item>
-                    <GenerateDesc title={title} />
+                    <GenerateDesc gptIsLoaded = {gptIsLoaded} title={title} />
                     <Button onClick={checkAnswer} variant="outlined" id="chatGPT">This is the real description!</Button>
                     </Item>
                     </Grid>
