@@ -6,7 +6,7 @@ import env from 'react-dotenv';
 import { Grid,Box,Button,Toolbar,Typography,Switch,Paper } from '@mui/material';
 import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
-
+import LoadingScreen from "./LoadingScreen";
 // Grid item styling
 const Item = styled(Paper)(({ theme }) => ({
     ...theme.typography.body2,
@@ -15,7 +15,8 @@ const Item = styled(Paper)(({ theme }) => ({
     color: theme.palette.text.secondary,
   }));
 
-function RvsR() {
+
+function RvsR(props) {
     // News API Data
     const [data, setData] = useState(null);
     const [content, setContent] = useState(null);
@@ -32,6 +33,13 @@ function RvsR() {
     let [reportScore, setReportScore] = useState(0);
     // Generate next round
     const [nextRound, setNextRound] = useState(null);
+    const [gptLoaded, setGptLoaded] = useState(false)
+
+
+    const gptIsLoaded = () => {
+        setGptLoaded(true)
+    }
+
     // Dark Mode 
     const [isDarkMode, setIsDarkMode] = useState(false);
 
@@ -67,7 +75,7 @@ function RvsR() {
       };  
 
     useEffect(() => {
-        fetch('https://newsdata.io/api/1/news?apikey=pub_19329994fcef97e0eb51e74b308e05517567e&language=en')
+        fetch('https://newsdata.io/api/1/news?apikey=pub_19332709e568981e985f21187a879f94062f3&language=en')
             .then(response => response.json())
             .then(data => {
                 console.log(data);
@@ -108,7 +116,7 @@ function RvsR() {
         
             setContent(data.results[number].content.split(' ').slice(0, 80).join(' '));
             setTitle(data.results[number].title);
-
+            setGptLoaded(false);
             return (
                 <RvsR />
             )
@@ -116,6 +124,20 @@ function RvsR() {
 
 
     }
+
+    let showRvsR = {}
+    let showLoading = {}
+    if(gptLoaded === false){
+        showRvsR = {
+           display: 'none'
+        };
+    } else{showRvsR = {};}
+    
+    if(gptLoaded === false){
+        showLoading = {};
+    } else{showLoading = {
+        display: 'none'}}
+
 
 
     return (
@@ -132,10 +154,14 @@ function RvsR() {
           onChange={handleChange}
           align="right" 
           />
+
         </Typography>
     </Toolbar>
+        <div style={showLoading}>
+            <LoadingScreen />
+            </div>
             {data && (
-                <div>
+                <div style={showRvsR}>
                     <h2 className="title">{title}</h2>
                     <Box sx={{ flexGrow:1}}>
                     <Grid 
@@ -149,14 +175,14 @@ function RvsR() {
                             <h2> Description: </h2>
                             <p className="content">{content}</p>
                             <Button variant="outlined" onClick={checkAnswer} id="journalist"> This is the real description!</Button>
-                            <GenerateDesc title={title} />
+                            <GenerateDesc gptIsLoaded={gptIsLoaded} title={title}/>
                             <Button onClick={checkAnswer} id="chatGPT">This is the real description!</Button>
                             </Item>
                             </Grid> 
                     ) : (
                             <Grid xs={12}>
                             <Item>
-                            <GenerateDesc title={title} />
+                            <GenerateDesc gptIsLoaded={gptIsLoaded} title={title}/>
                             <Button onClick={checkAnswer} id="chatGPT">This is the real description!</Button>
                             <h2> Description: </h2>
                             <p className="content">{content}</p>
@@ -174,6 +200,7 @@ function RvsR() {
                     </Grid>
                     </Box>
                 </div>
+            
             )}
             </ThemeProvider>
         </div>
