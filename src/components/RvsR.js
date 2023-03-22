@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import GenerateDesc from "../utils/generateDesc";
 import newsscraper from '../utils/newsscraper';
-import TopAppBar from './appbar';
 import env from 'react-dotenv';
 import { Grid,Box,Button,Toolbar,Typography,Switch,Paper } from '@mui/material';
 import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
@@ -53,6 +52,7 @@ function RvsR(props) {
           secondary: {
             main: '#FF3B30',
           },
+
         },
       });
     
@@ -125,9 +125,6 @@ function RvsR(props) {
             return (
                 <RvsR />
             )
-        
-
-
     }
 
     let showRvsR = {}
@@ -169,37 +166,62 @@ function RvsR(props) {
                 <div style={showRvsR}>
                     <h2 className="title">{title}</h2>
                     <Box sx={{ flexGrow:1}}>
+
+                    {isSwapped ? (
                     <Grid 
                     container
                     justifyContent="center"
                     alignItems="stretch"
+                    colums={12}
                     > 
-                    {isSwapped ? (
-                            <Grid item xs={12}>
-                            <Item>
-                            <h2> Description: </h2>
-                            <p className="content">{content}</p>
-                            <Button variant="outlined" onClick={checkAnswer} id="journalist"> This is the real description!</Button>
-                            <GenerateDesc gptIsLoaded={gptIsLoaded} title={title}/>
-                            <Button onClick={checkAnswer} id="chatGPT">This is the real description!</Button>
-                            </Item>
-                            </Grid> 
+
+                    <Grid xs={6}>
+                    <Item>
+                    <h2> Description: </h2>
+                    <p className="content">{content}</p>
+                    <Button variant="outlined" onClick={checkAnswer} id="journalist"> This is the real description!</Button>
+                    </Item>
+                    </Grid>
+                    <Grid xs={6}>
+                    <Item>
+                    <GenerateDesc title={title} />
+                    <Button variant="outlined" onClick={checkAnswer} id="chatGPT">This is the real description!</Button>
+                    </Item>
+                    </Grid>
+                    </Grid> 
                     ) : (
-                            <Grid xs={12}>
-                            <Item>
-                            <GenerateDesc gptIsLoaded={gptIsLoaded} title={title}/>
-                            <Button onClick={checkAnswer} id="chatGPT">This is the real description!</Button>
-                            <h2> Description: </h2>
-                            <p className="content">{content}</p>
-                            <Button onClick={checkAnswer} id="journalist"> This is the real description!</Button>
-                            </Item>    
-                            </Grid>
+                    <Grid 
+                    container
+                    justifyContent="center"
+                    alignItems="stretch"
+                    colums={12}
+                    > 
+                    <Grid xs={6}>
+                    <Item>
+                    <GenerateDesc title={title} />
+                    <Button onClick={checkAnswer} variant="outlined" id="chatGPT">This is the real description!</Button>
+                    </Item>
+                    </Grid>
+                    <Grid xs={6}>
+                    <Item>
+                    <h2> Description: </h2>
+                    <p className="content">{content}</p>
+                    <Button onClick={checkAnswer} variant="outlined" id="journalist"> This is the real description!</Button>
+                    </Item>  
+                    </Grid>  
+                    </Grid>
+
                         )}
+                    <Grid
+                    container
+                    justifyContent="center"
+                    colums={12}
+                    >
                     <Grid xs={12}>
                     <Item>
                     <h2 className='d-flex align-items-center justify-content-center'>{rightOrWrong}</h2>
                     <h2 className='d-flex align-items-center justify-content-center'>Robots: {robotScore} vs  Reporters: {reportScore}</h2>
-                    <Button onClick={handleNextRound}>{nextRound}</Button>
+                    <Button variant="outlined" onClick={handleNextRound}>{nextRound}</Button>
                     </Item>
                     </Grid>
                     </Grid>
