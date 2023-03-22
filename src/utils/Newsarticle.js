@@ -6,13 +6,12 @@ import env from 'react-dotenv';
 function Newsarticle(){
 const [articleTitle, setArticleTitle] = useState('')
 const [articleURL, setArticleURL] = useState('')
-const [articleContent, setArticleContent] = useState([])
+const [articleContent, setArticleContent] = useState()
 
 
-  fetch('https://newsdata.io/api/1/news?apikey=pub_189185d557591cb72662c5b99d3dc385d3f91&language=en&country=gb,us,ca,nz,au')
+  fetch('https://newsdata.io/api/1/news?apikey=pub_19285cce4ce7dea610f3df1a8b4a1ef875aa1&language=en&country=gb,us,ca,nz,au')
     .then(response => response.json())
     .then(data => {
-      console.log(data);
       setArticleTitle(data.results[0].title)
       setArticleURL(data.results[0].link)
     })
@@ -36,12 +35,14 @@ const [articleContent, setArticleContent] = useState([])
       
         })
           .then(response => {setArticleContent(response.data);
+            console.log(articleContent);
+            console.log(response.data);
+            console.log(articleTitle);
+            console.log(articleURL);
           })
       },
       [articleURL]
     );
-
-
 
 }
 
