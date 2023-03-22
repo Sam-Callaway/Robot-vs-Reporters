@@ -44,11 +44,9 @@ export default function DarkModeSwitch() {
           primary: '#13ED65',
           secondary: '#4CAF50',
         },
-        overrides: {
-          MuiButton: {
-              color: '#13ED65',   
-          },
-        }
+        button: {
+          default: '#000000',
+        },
       },
     });
   
