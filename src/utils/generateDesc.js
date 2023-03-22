@@ -31,6 +31,7 @@ function GenerateDesc(props) {
         );
         const generatedText = response.data.choices[0].message.content;
         setDescription(generatedText);
+        props.gptIsLoaded();
       } catch (error) {
         console.error(error);
       }

@@ -5,8 +5,9 @@ import TopAppBar from './appbar';
 import env from 'react-dotenv';
 import { Button, Col, Container, Row } from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import LoadingScreen from "./LoadingScreen";
 
-function RvsR() {
+function RvsR(props) {
     // News API Data
     const [data, setData] = useState(null);
     const [content, setContent] = useState(null);
@@ -23,9 +24,16 @@ function RvsR() {
     let [reportScore, setReportScore] = useState(0);
     // Generate next round
     const [nextRound, setNextRound] = useState(null);
+    const [gptLoaded, setGptLoaded] = useState(false)
+
+
+    const gptIsLoaded = () => {
+        setGptLoaded(true)
+    }
+
 
     useEffect(() => {
-        fetch('https://newsdata.io/api/1/news?apikey=pub_193162792230367451de7c1e4d13a2aa316ba&language=en')
+        fetch('https://newsdata.io/api/1/news?apikey=pub_19332709e568981e985f21187a879f94062f3&language=en')
             .then(response => response.json())
             .then(data => {
                 console.log(data);
@@ -66,7 +74,7 @@ function RvsR() {
         
             setContent(data.results[number].content.split(' ').slice(0, 80).join(' '));
             setTitle(data.results[number].title);
-
+            setGptLoaded(false);
             return (
                 <RvsR />
             )
@@ -75,12 +83,29 @@ function RvsR() {
 
     }
 
+    let showRvsR = {}
+    let showLoading = {}
+    if(gptLoaded === false){
+        showRvsR = {
+           display: 'none'
+        };
+    } else{showRvsR = {};}
+    
+    if(gptLoaded === false){
+        showLoading = {};
+    } else{showLoading = {
+        display: 'none'}}
+
+
 
     return (
         <div>
             <TopAppBar />
+            <div style={showLoading}>
+            <LoadingScreen />
+            </div>
             {data && (
-                <div>
+                <div style={showRvsR}>
                     <h2 className="title">{title}</h2>
                     <Row>
                         {isSwapped ? (
@@ -91,14 +116,14 @@ function RvsR() {
                                     <Button onClick={checkAnswer} id="journalist"> This is the real description!</Button>
                                 </Col>
                                 <Col>
-                                    <GenerateDesc title={title} />
+                                    <GenerateDesc gptIsLoaded={gptIsLoaded} title={title}/>
                                     <Button onClick={checkAnswer} id="chatGPT">This is the real description!</Button>
                                 </Col>
                             </>
                         ) : (
                             <>
                                 <Col>
-                                    <GenerateDesc title={title} />
+                                    <GenerateDesc gptIsLoaded={gptIsLoaded} title={title}/>
                                     <Button onClick={checkAnswer} id="chatGPT">This is the real description!</Button>
                                 </Col>
                                 <Col>
@@ -113,6 +138,7 @@ function RvsR() {
                     <h2 className='d-flex align-items-center justify-content-center'>Robots: {robotScore} vs  Reporters: {reportScore}</h2>
                     <Button onClick={handleNextRound}>{nextRound}</Button>
                 </div>
+            
             )}
         </div>
     );
