@@ -3,8 +3,17 @@ import GenerateDesc from "../utils/generateDesc";
 import newsscraper from '../utils/newsscraper';
 import TopAppBar from './appbar';
 import env from 'react-dotenv';
-import { Button, Col, Container, Row } from "react-bootstrap";
-import 'bootstrap/dist/css/bootstrap.min.css';
+import { Grid,Box,Button,Toolbar,Typography,Switch,Paper } from '@mui/material';
+import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
+
+// Grid item styling
+const Item = styled(Paper)(({ theme }) => ({
+    ...theme.typography.body2,
+    padding: theme.spacing(1),
+    textAlign: 'center',
+    color: theme.palette.text.secondary,
+  }));
 
 function RvsR() {
     // News API Data
@@ -23,9 +32,42 @@ function RvsR() {
     let [reportScore, setReportScore] = useState(0);
     // Generate next round
     const [nextRound, setNextRound] = useState(null);
+    // Dark Mode 
+    const [isDarkMode, setIsDarkMode] = useState(false);
+
+    // Creating Dark Mode theme
+      const lightTheme = createTheme({
+        palette: {
+          mode: 'light',
+          primary: {
+            main: '#007AFF',
+          },
+          secondary: {
+            main: '#FF3B30',
+          },
+        },
+      });
+    
+      const darkTheme = createTheme({
+        palette: {
+          mode: 'dark',
+          primary: {
+            main: '#007AFF',
+          },
+          secondary: {
+            main: '#FF3B30',
+          },
+        },
+      });
+    
+      const theme = isDarkMode ? darkTheme : lightTheme;
+    
+      const handleChange = () => {
+        setIsDarkMode(!isDarkMode);
+      };  
 
     useEffect(() => {
-        fetch('https://newsdata.io/api/1/news?apikey=pub_193162792230367451de7c1e4d13a2aa316ba&language=en')
+        fetch('https://newsdata.io/api/1/news?apikey=pub_19329994fcef97e0eb51e74b308e05517567e&language=en')
             .then(response => response.json())
             .then(data => {
                 console.log(data);
@@ -78,42 +120,62 @@ function RvsR() {
 
     return (
         <div>
-            <TopAppBar />
+    <ThemeProvider theme={theme}>
+    <CssBaseline enableColorScheme />
+    <Toolbar color='transparent' position="static" >
+          <Typography variant="h4" component="div" sx={{ flexGrow: 1 }} position="center" align="center">
+            Robot VS Reporters
+          </Typography>
+          <Typography>
+        <Switch
+          checked={isDarkMode}
+          onChange={handleChange}
+          align="right" 
+          />
+        </Typography>
+    </Toolbar>
             {data && (
                 <div>
                     <h2 className="title">{title}</h2>
-                    <Row>
-                        {isSwapped ? (
-                            <>
-                                <Col>
-                                    <h2> Description: </h2>
-                                    <p className="content">{content}</p>
-                                    <Button onClick={checkAnswer} id="journalist"> This is the real description!</Button>
-                                </Col>
-                                <Col>
-                                    <GenerateDesc title={title} />
-                                    <Button onClick={checkAnswer} id="chatGPT">This is the real description!</Button>
-                                </Col>
-                            </>
-                        ) : (
-                            <>
-                                <Col>
-                                    <GenerateDesc title={title} />
-                                    <Button onClick={checkAnswer} id="chatGPT">This is the real description!</Button>
-                                </Col>
-                                <Col>
-                                    <h2> Description: </h2>
-                                    <p className="content">{content}</p>
-                                    <Button onClick={checkAnswer} id="journalist"> This is the real description!</Button>
-                                </Col>
-                            </>
+                    <Box sx={{ flexGrow:1}}>
+                    <Grid 
+                    container
+                    justifyContent="center"
+                    alignItems="stretch"
+                    > 
+                    {isSwapped ? (
+                            <Grid item xs={12}>
+                            <Item>
+                            <h2> Description: </h2>
+                            <p className="content">{content}</p>
+                            <Button variant="outlined" onClick={checkAnswer} id="journalist"> This is the real description!</Button>
+                            <GenerateDesc title={title} />
+                            <Button onClick={checkAnswer} id="chatGPT">This is the real description!</Button>
+                            </Item>
+                            </Grid> 
+                    ) : (
+                            <Grid xs={12}>
+                            <Item>
+                            <GenerateDesc title={title} />
+                            <Button onClick={checkAnswer} id="chatGPT">This is the real description!</Button>
+                            <h2> Description: </h2>
+                            <p className="content">{content}</p>
+                            <Button onClick={checkAnswer} id="journalist"> This is the real description!</Button>
+                            </Item>    
+                            </Grid>
                         )}
-                    </Row>
+                    <Grid xs={12}>
+                    <Item>
                     <h2 className='d-flex align-items-center justify-content-center'>{rightOrWrong}</h2>
                     <h2 className='d-flex align-items-center justify-content-center'>Robots: {robotScore} vs  Reporters: {reportScore}</h2>
                     <Button onClick={handleNextRound}>{nextRound}</Button>
+                    </Item>
+                    </Grid>
+                    </Grid>
+                    </Box>
                 </div>
             )}
+            </ThemeProvider>
         </div>
     );
 }
