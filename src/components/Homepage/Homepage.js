@@ -1,12 +1,15 @@
 import { Container, Row, Col } from "react-bootstrap";
-import TopAppBar from "./appbar";
+import TopAppBar from "../TopBar/appbar.js";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import RvsR from "./RvsR";
+import "./Homepage.css";
+import RvsR from "../RvsR/RvsR";
 import React, { useState, useEffect } from 'react';
-import GenerateDesc from "../utils/generateDesc";
+import homepageImg from "./homepageImg.png";
+import imgNoBG from "./homepageNoBG.png";
 import { Grid,Box,Button,Toolbar,Typography,Switch,Paper } from '@mui/material';
 import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
+
 
 // Grid item styling
 const Item = styled(Paper)(({ theme }) => ({
@@ -67,20 +70,25 @@ function Homepage (props) {
     
 
     return (
-
         <Container>
             {showHomepage &&
             <Container>
             <TopAppBar/>
+            <Container className="p-5">
+            <Container className="d-flex justify-content-center align-items-center pt-4">
+            <img src={homepageImg} style={{maxHeight: "60vh", maxWidth: "40vh"}}/>
+            </Container>
+            <p className="text-muted d-flex justify-content-center align-items-center">Test your skills, determine which article is real</p>
             <Row>
-                <Col>
-                <Button onClick={handleStart}>Start</Button>
-                </Col>
-                <Col>
-                <Button onClick={handleHowToPlay}>How To Play</Button>
+                <Col className="d-flex justify-content-center align-items-center pt-4">
+                 <Button variant="outlined" onClick={handleStart} >Start</Button>
+                <Button variant="outlined" onClick={handleHowToPlay}>How To Play</Button>
                 </Col>
             </Row>
-            <h2>{howToPlay}</h2>
+            <Col >
+            <p className="d-flex justify-content-center align-items-center pt-4">{howToPlay}</p>
+            </Col>
+            </Container>
             </Container>}
             {showRvsR &&
              <Container>
@@ -89,7 +97,10 @@ function Homepage (props) {
         </Container>
     )
 
-
+    // Button onClick={handleStart}>Start</Button>
+    // </Col>
+    // <Col>
+    // <Button onClick={handleHowToPlay}>How To Play</Button>
 
 }
 

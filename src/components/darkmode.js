@@ -19,7 +19,7 @@ export default function DarkModeSwitch() {
           main: '#4CAF50',
         },
         background: {
-          default: '#D9D9D9',
+          default: '#fbf3e5',
         },
         text: {
           primary: '#F76F72',
