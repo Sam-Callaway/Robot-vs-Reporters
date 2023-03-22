@@ -15,6 +15,7 @@ function GenerateDesc(props) {
   // Generate description function
   useEffect(() => {
     const handleGenerateDescription = async () => {
+      console.log("Requesting ChatGPT")
       try {
         const response = await axios.post(
           'https://api.openai.com/v1/chat/completions',
@@ -31,6 +32,7 @@ function GenerateDesc(props) {
         );
         const generatedText = response.data.choices[0].message.content;
         setDescription(generatedText);
+        props.gptIsLoaded();
       } catch (error) {
         console.error(error);
       }

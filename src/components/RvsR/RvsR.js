@@ -3,10 +3,21 @@ import GenerateDesc from "../../utils/generateDesc";
 import newsscraper from '../../utils/newsscraper';
 import TopAppBar from '../TopBar/appbar';
 import env from 'react-dotenv';
-import { Button, Col, Container, Row } from "react-bootstrap";
-import 'bootstrap/dist/css/bootstrap.min.css';
+import { Grid,Box,Button,Toolbar,Typography,Switch,Paper } from '@mui/material';
+import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
+import LoadingScreen from "./LoadingScreen";
+// Grid item styling
 
-function RvsR() {
+const Item = styled(Paper)(({ theme }) => ({
+    ...theme.typography.body2,
+    padding: theme.spacing(1),
+    textAlign: 'center',
+    color: theme.palette.text.secondary,
+  }));
+
+
+function RvsR(props) {
     // News API Data
     const [data, setData] = useState(null);
     const [content, setContent] = useState(null);
@@ -23,6 +34,47 @@ function RvsR() {
     let [reportScore, setReportScore] = useState(0);
     // Generate next round
     const [nextRound, setNextRound] = useState(null);
+    const [gptLoaded, setGptLoaded] = useState(false)
+
+
+    const gptIsLoaded = () => {
+        setGptLoaded(true)
+    }
+
+    // Dark Mode 
+    const [isDarkMode, setIsDarkMode] = useState(false);
+
+    // Creating Dark Mode theme
+      const lightTheme = createTheme({
+        palette: {
+          mode: 'light',
+          primary: {
+            main: '#007AFF',
+          },
+          secondary: {
+            main: '#FF3B30',
+          },
+
+        },
+      });
+    
+      const darkTheme = createTheme({
+        palette: {
+          mode: 'dark',
+          primary: {
+            main: '#007AFF',
+          },
+          secondary: {
+            main: '#FF3B30',
+          },
+        },
+      });
+    
+      const theme = isDarkMode ? darkTheme : lightTheme;
+    
+      const handleChange = () => {
+        setIsDarkMode(!isDarkMode);
+      };  
 
     useEffect(() => {
         fetch('https://newsdata.io/api/1/news?apikey=pub_19332709e568981e985f21187a879f94062f3&language=en')
@@ -57,8 +109,13 @@ function RvsR() {
     }
 
     const handleGenerateNumber = () => {
-        const randomNum = Math.floor(Math.random() * 10);
-        setNumber(randomNum);
+      console.log(number)
+        const randomNum = Math.floor(Math.random() * 9);
+        if (randomNum === number){             
+            if((randomNum+1) === 10)
+                {setNumber(0)}else{setNumber(randomNum+1)}            
+            }else{
+              setNumber(randomNum);}
 
     };
 
@@ -66,54 +123,115 @@ function RvsR() {
         
             setContent(data.results[number].content.split(' ').slice(0, 80).join(' '));
             setTitle(data.results[number].title);
-
+            setGptLoaded(false);
             return (
                 <RvsR />
             )
-        
-
-
     }
+
+    let showRvsR = {}
+    let showLoading = {}
+    if(gptLoaded === false){
+        showRvsR = {
+           display: 'none'
+        };
+    } else{showRvsR = {};}
+    
+    if(gptLoaded === false){
+        showLoading = {};
+    } else{showLoading = {
+        display: 'none'}}
+
 
 
     return (
         <div>
-            <TopAppBar />
+    <ThemeProvider theme={theme}>
+    <CssBaseline enableColorScheme />
+    <Toolbar color='transparent' position="static" >
+          <Typography variant="h4" component="div" sx={{ flexGrow: 1 }} position="center" align="center">
+            Robot VS Reporters
+          </Typography>
+          <Typography>
+        <Switch
+          checked={isDarkMode}
+          onChange={handleChange}
+          align="right" 
+          />
+
+        </Typography>
+    </Toolbar>
+        <div style={showLoading}>
+            <LoadingScreen />
+            </div>
             {data && (
-                <div>
+                <div style={showRvsR}>
                     <h2 className="title">{title}</h2>
-                    <Row>
-                        {isSwapped ? (
-                            <>
-                                <Col>
-                                    <h2> Description: </h2>
-                                    <p className="content">{content}</p>
-                                    <Button onClick={checkAnswer} id="journalist"> This is the real description!</Button>
-                                </Col>
-                                <Col>
-                                    <GenerateDesc title={title} />
-                                    <Button onClick={checkAnswer} id="chatGPT">This is the real description!</Button>
-                                </Col>
-                            </>
-                        ) : (
-                            <>
-                                <Col>
-                                    <GenerateDesc title={title} />
-                                    <Button onClick={checkAnswer} id="chatGPT">This is the real description!</Button>
-                                </Col>
-                                <Col>
-                                    <h2> Description: </h2>
-                                    <p className="content">{content}</p>
-                                    <Button onClick={checkAnswer} id="journalist"> This is the real description!</Button>
-                                </Col>
-                            </>
+                    <Box sx={{ flexGrow:1}}>
+
+                    {isSwapped ? (
+                    <Grid 
+                    container
+                    justifyContent="center"
+                    alignItems="stretch"
+                    colums={12}
+                    > 
+
+                    <Grid xs={6}>
+                    <Item>
+                    <h2> Description: </h2>
+                    <p className="content">{content}</p>
+                    <Button variant="outlined" onClick={checkAnswer} id="journalist"> This is the real description!</Button>
+                    </Item>
+                    </Grid>
+                    <Grid xs={6}>
+                    <Item>
+                    <GenerateDesc title={title} />
+                    <Button variant="outlined" onClick={checkAnswer} id="chatGPT">This is the real description!</Button>
+                    </Item>
+                    </Grid>
+                    </Grid> 
+                    ) : (
+                    <Grid 
+                    container
+                    justifyContent="center"
+                    alignItems="stretch"
+                    colums={12}
+                    > 
+                    <Grid xs={6}>
+                    <Item>
+                    <GenerateDesc title={title} />
+                    <Button onClick={checkAnswer} variant="outlined" id="chatGPT">This is the real description!</Button>
+                    </Item>
+                    </Grid>
+                    <Grid xs={6}>
+                    <Item>
+                    <h2> Description: </h2>
+                    <p className="content">{content}</p>
+                    <Button onClick={checkAnswer} variant="outlined" id="journalist"> This is the real description!</Button>
+                    </Item>  
+                    </Grid>  
+                    </Grid>
+
                         )}
-                    </Row>
+                    <Grid
+                    container
+                    justifyContent="center"
+                    colums={12}
+                    >
+                    <Grid xs={12}>
+                    <Item>
                     <h2 className='d-flex align-items-center justify-content-center'>{rightOrWrong}</h2>
                     <h2 className='d-flex align-items-center justify-content-center'>Robots: {robotScore} vs  Reporters: {reportScore}</h2>
-                    <Button onClick={handleNextRound}>{nextRound}</Button>
+                    <Button variant="outlined" onClick={handleNextRound}>{nextRound}</Button>
+                    </Item>
+                    </Grid>
+                    </Grid>
+                    </Box>
                 </div>
+            
             )}
+            </ThemeProvider>
         </div>
     );
 }
