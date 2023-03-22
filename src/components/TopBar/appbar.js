@@ -1,5 +1,5 @@
 import * as React from 'react';
-import DarkModeSwitch from '../../utils/darkmode';
+import DarkModeSwitch from '../darkmode';
 import Toolbar from '@mui/material/Toolbar';
 import { Typography } from '@mui/material';
 import "./appbar.css";

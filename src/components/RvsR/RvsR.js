@@ -6,7 +6,7 @@ import env from 'react-dotenv';
 import { Grid,Box,Button,Toolbar,Typography,Switch,Paper } from '@mui/material';
 import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
-import LoadingScreen from "./LoadingScreen";
+import LoadingScreen from "../LoadingScreen/LoadingScreen.js";
 // Grid item styling
 
 const Item = styled(Paper)(({ theme }) => ({

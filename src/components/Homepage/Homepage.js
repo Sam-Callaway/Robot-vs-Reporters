@@ -1,10 +1,10 @@
-import { Button, Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap";
 import TopAppBar from "../TopBar/appbar.js";
-
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./Homepage.css";
 import RvsR from "../RvsR/RvsR";
 import React, { useState, useEffect } from 'react';
+import homepageImg from "./homepageImg.png";
 import imgNoBG from "./homepageNoBG.png";
 import { Grid,Box,Button,Toolbar,Typography,Switch,Paper } from '@mui/material';
 import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
@@ -75,13 +75,13 @@ function Homepage (props) {
             <Container>
             <TopAppBar/>
             <Container className="d-flex justify-content-center align-items-center pt-4">
-            <img src={imgNoBG} style={{maxHeight: "60vh", maxWidth: "40vh"}}/>
+            <img src={homepageImg} style={{maxHeight: "60vh", maxWidth: "40vh"}}/>
             </Container>
             <p className="text-muted d-flex justify-content-center align-items-center">Test your skills, determine which article is real</p>
             <Row>
                 <Col className="d-flex justify-content-center align-items-center pt-4">
-                 <Button onClick={handleStart}>Start</Button>
-                <Button onClick={handleHowToPlay}>How To Play</Button>
+                 <Button variant="outlined" onClick={handleStart} >Start</Button>
+                <Button variant="outlined" onClick={handleHowToPlay}>How To Play</Button>
                 </Col>
             </Row>
             <Col >
