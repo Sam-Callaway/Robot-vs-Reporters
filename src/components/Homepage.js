@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import RvsR from "./RvsR";
 import React, { useState, useEffect } from 'react';
 import GenerateDesc from "../utils/generateDesc";
+import LoadingScreen from "./LoadingScreen";
 
 
 
@@ -11,10 +12,11 @@ function Homepage (props) {
     const [showRvsR, setShowRvsR] = useState(false);
     const [showHomepage, setShowHomepage] = useState(true);
     const [howToPlay, setHowToPlay] = useState(null);
-
+    //const [showLoadingScreen, setShowLoadingScreen] = useState(false);
 
     const handleStart = () => {
         setShowRvsR(true);
+        //setShowLoadingScreen(true);
         setShowHomepage(false);
     }
 
@@ -42,6 +44,10 @@ function Homepage (props) {
              <Container>
                 <RvsR />
                 </Container>}
+            {/* {showLoadingScreen &&
+            <Container>
+            <LoadingScreen />
+            </Container>} */}
         </Container>
     )
 
