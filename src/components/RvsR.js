@@ -30,7 +30,7 @@ function RvsR() {
             .then(data => {
                 console.log(data);
                 setData(data);
-                setContent(data.results[7].content.split(' ').slice(0, 80).join(' '));
+                setContent(data.results[7].content.split(' ').slice(7, 80).join(' '));
                 setTitle(data.results[7].title);
                 setAnswer(answer);
             })
@@ -53,20 +53,25 @@ function RvsR() {
 
         setNextRound("Load next title");
         handleGenerateNumber();
+       
     }
 
     const handleGenerateNumber = () => {
         const randomNum = Math.floor(Math.random() * 10);
         setNumber(randomNum);
+
     };
 
     function handleNextRound() {
-        setContent(data.results[number].content.split(' ').slice(0, 80).join(' '));
-        setTitle(data.results[number].title);
+        
+            setContent(data.results[number].content.split(' ').slice(0, 80).join(' '));
+            setTitle(data.results[number].title);
 
-        return (
-            <RvsR />
-        )
+            return (
+                <RvsR />
+            )
+        
+
 
     }
 
