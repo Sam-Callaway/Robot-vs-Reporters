@@ -17,7 +17,7 @@ function RvsR() {
   let [reportScore, setReportScore] = useState(0);
 
   useEffect(() => {
-    fetch('https://newsdata.io/api/1/news?apikey=pub_19285cce4ce7dea610f3df1a8b4a1ef875aa1&language=en')
+    fetch('https://newsdata.io/api/1/news?apikey=pub_193162792230367451de7c1e4d13a2aa316ba&language=en')
       .then(response => response.json())
       .then(data => {
         console.log(data);

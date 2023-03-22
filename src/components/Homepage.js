@@ -3,13 +3,13 @@ import TopAppBar from "./appbar";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import RvsR from "./RvsR";
 import React, { useState, useEffect } from 'react';
+import GenerateDesc from "../utils/generateDesc";
 
 
 
-function Homepage () {
+function Homepage (props) {
     const [showRvsR, setShowRvsR] = useState(false);
     const [showHomepage, setShowHomepage] = useState(true);
-
 
 
     const handleStart = () => {
@@ -31,7 +31,10 @@ function Homepage () {
                 <Button>How To Play</Button>
                 </Col>
             </Row></Container>}
-            {showRvsR && <RvsR />}
+            {showRvsR &&
+             <Container>
+                <RvsR />
+                </Container>}
         </Container>
     )
 

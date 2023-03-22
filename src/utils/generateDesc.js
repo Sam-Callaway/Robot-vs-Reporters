@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import env from 'react-dotenv';
 import { Button, Col, Container, Row } from "react-bootstrap";
@@ -13,39 +13,35 @@ function GenerateDesc(props) {
   const OPENAI_KEY = env.REACT_APP_OPENAI_KEY;
 
   // Generate description function
-  const handleGenerateDescription = async () => {
-    try {
-      console.log(OPENAI_KEY);
-      // Create axios post request to chatGPT api
-      const response = await axios.post(
-        'https://api.openai.com/v1/chat/completions',
-        {
-          // Determine api settings
-          "model": "gpt-3.5-turbo",
-          "messages": [{"role": "user", "content": `Generate a 80 word article description in the style of a journalist from from the following header: ${props.title}!`}],
-        },
-        {
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${OPENAI_KEY}`,
+  useEffect(() => {
+    const handleGenerateDescription = async () => {
+      try {
+        const response = await axios.post(
+          'https://api.openai.com/v1/chat/completions',
+          {
+            "model": "gpt-3.5-turbo",
+            "messages": [{"role": "user", "content": `Generate a 80 word article description in the style of a journalist from from the following header: ${props.title}!`}],
           },
-        }
-      );
-      console.log(response);
-      // Storing required response as variable
-      const generatedText = response.data.choices[0].message.content;
-      // SetDescription method with response from API
-      setDescription(generatedText);
-    } catch (error) {
-      console.error(error);
-    }
-  };
+          {
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: `Bearer ${OPENAI_KEY}`,
+            },
+          }
+        );
+        const generatedText = response.data.choices[0].message.content;
+        setDescription(generatedText);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    handleGenerateDescription();
+  }, [props.title, OPENAI_KEY]);
 
   return (
     <div>
-      <br />
-      <Button onClick={handleGenerateDescription}>Generate Description</Button>
-      <br />
+      
       {description && (
         <>
           <h2> Description:</h2>
