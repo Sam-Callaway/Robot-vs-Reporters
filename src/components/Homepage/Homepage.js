@@ -74,6 +74,7 @@ function Homepage (props) {
             {showHomepage &&
             <Container>
             <TopAppBar/>
+            <Container className="p-5">
             <Container className="d-flex justify-content-center align-items-center pt-4">
             <img src={homepageImg} style={{maxHeight: "60vh", maxWidth: "40vh"}}/>
             </Container>
@@ -87,6 +88,7 @@ function Homepage (props) {
             <Col >
             <p className="d-flex justify-content-center align-items-center pt-4">{howToPlay}</p>
             </Col>
+            </Container>
             </Container>}
             {showRvsR &&
              <Container>

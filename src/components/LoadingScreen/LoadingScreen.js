@@ -4,6 +4,15 @@ import Toolbar from '@mui/material/Toolbar';
 import { Typography } from '@mui/material';
 
 function LoadingScreen (){
-return("LOADING SCREEN")
+
+    const loadingTitles = [];
+
+
+
+return(
+    <div>
+        <h1></h1>
+    </div>
+    )
 }
 export default LoadingScreen

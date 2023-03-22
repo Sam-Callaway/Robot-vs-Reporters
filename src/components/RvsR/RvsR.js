@@ -45,16 +45,22 @@ function RvsR(props) {
     const [isDarkMode, setIsDarkMode] = useState(false);
 
     // Creating Dark Mode theme
-      const lightTheme = createTheme({
+    const lightTheme = createTheme({
         palette: {
           mode: 'light',
           primary: {
-            main: '#007AFF',
+            main: '#6A1B9A',
           },
           secondary: {
-            main: '#FF3B30',
+            main: '#4CAF50',
           },
-
+          background: {
+            default: '#fbf3e5',
+          },
+          text: {
+            primary: '#F76F72',
+            secondary: '#4CAF50',
+          },
         },
       });
     
@@ -66,6 +72,16 @@ function RvsR(props) {
           },
           secondary: {
             main: '#FF3B30',
+          },
+          background: {
+            default: '#000000',
+          },
+          text: {
+            primary: '#13ED65',
+            secondary: '#4CAF50',
+          },
+          button: {
+            default: '#000000',
           },
         },
       });
@@ -82,7 +98,7 @@ function RvsR(props) {
             .then(data => {
                 console.log(data);
                 setData(data);
-                setContent(data.results[7].content.split(' ').slice(7, 80).join(' '));
+                setContent(data.results[7].content.split(' ').slice(0, 80).join(' '));
                 setTitle(data.results[7].title);
                 setAnswer(answer);
             })
@@ -148,25 +164,13 @@ function RvsR(props) {
         <div>
     <ThemeProvider theme={theme}>
     <CssBaseline enableColorScheme />
-    <Toolbar color='transparent' position="static" >
-          <Typography variant="h4" component="div" sx={{ flexGrow: 1 }} position="center" align="center">
-            Robot VS Reporters
-          </Typography>
-          <Typography>
-        <Switch
-          checked={isDarkMode}
-          onChange={handleChange}
-          align="right" 
-          />
-
-        </Typography>
-    </Toolbar>
+        <TopAppBar/>
         <div style={showLoading}>
             <LoadingScreen />
             </div>
             {data && (
                 <div style={showRvsR}>
-                    <h2 className="title">{title}</h2>
+                    <h2 className="title d-flex justify-content-center align-items-center">Article Title : {title}</h2>
                     <Box sx={{ flexGrow:1}}>
 
                     {isSwapped ? (
