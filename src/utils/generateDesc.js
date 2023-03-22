@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import env from 'react-dotenv';
-import { Button, Col, Container, Row } from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
-
+import { Button } from '@mui/material';
 
 function GenerateDesc(props) {
   // Getters/setters for article header and description
@@ -44,13 +43,13 @@ function GenerateDesc(props) {
   return (
     <div>
       <br />
-      <Button onClick={handleGenerateDescription}>Generate Description</Button>
+      <Button onClick={handleGenerateDescription} variant="outlined">Generate Description</Button>
       <br />
       {description && (
-        <>
-          <h2>ChatGPT Description:</h2>
-          <p>{description}</p>
-        </>
+    <div>    
+    <h2>ChatGPT Description:</h2>
+    <p>{description}</p>
+    </div>
       )}
     </div>
   );
