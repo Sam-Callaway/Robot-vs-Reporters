@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import GenerateDesc from "../utils/generateDesc";
-import newsscraper from '../utils/newsscraper';
-import TopAppBar from './appbar';
+import GenerateDesc from "../../utils/generateDesc";
+import newsscraper from '../../utils/newsscraper';
+import TopAppBar from '../TopBar/appbar';
 import env from 'react-dotenv';
 import { Button, Col, Container, Row } from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -25,7 +25,7 @@ function RvsR() {
     const [nextRound, setNextRound] = useState(null);
 
     useEffect(() => {
-        fetch('https://newsdata.io/api/1/news?apikey=pub_193162792230367451de7c1e4d13a2aa316ba&language=en')
+        fetch('https://newsdata.io/api/1/news?apikey=pub_19332709e568981e985f21187a879f94062f3&language=en')
             .then(response => response.json())
             .then(data => {
                 console.log(data);

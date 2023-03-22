@@ -1,9 +1,13 @@
 import { Button, Container, Row, Col } from "react-bootstrap";
-import TopAppBar from "./appbar";
+import TopAppBar from "../TopBar/appbar.js";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import RvsR from "./RvsR";
+import "./Homepage.css";
+import RvsR from "../RvsR/RvsR";
 import React, { useState, useEffect } from 'react';
-import GenerateDesc from "../utils/generateDesc";
+import GenerateDesc from "../../utils/generateDesc";
+import backgroundImage from "./homepageImg.png";
+import imgNoBG from "./homepageNoBG.png";
+
 
 
 
@@ -23,20 +27,23 @@ function Homepage (props) {
     }
 
     return (
-
         <Container>
             {showHomepage &&
             <Container>
             <TopAppBar/>
+            <Container className="d-flex justify-content-center align-items-center pt-4">
+            <img src={imgNoBG} style={{maxHeight: "60vh", maxWidth: "40vh"}}/>
+            </Container>
+            <p className="text-muted d-flex justify-content-center align-items-center">Test your skills, determine which article is real</p>
             <Row>
-                <Col>
-                <Button onClick={handleStart}>Start</Button>
-                </Col>
-                <Col>
+                <Col className="d-flex justify-content-center align-items-center pt-4">
+                 <Button onClick={handleStart}>Start</Button>
                 <Button onClick={handleHowToPlay}>How To Play</Button>
                 </Col>
             </Row>
-            <h2>{howToPlay}</h2>
+            <Col >
+            <p className="d-flex justify-content-center align-items-center pt-4">{howToPlay}</p>
+            </Col>
             </Container>}
             {showRvsR &&
              <Container>
@@ -45,7 +52,10 @@ function Homepage (props) {
         </Container>
     )
 
-
+    // Button onClick={handleStart}>Start</Button>
+    // </Col>
+    // <Col>
+    // <Button onClick={handleHowToPlay}>How To Play</Button>
 
 }
 

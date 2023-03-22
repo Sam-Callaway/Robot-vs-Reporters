@@ -1,6 +1,5 @@
-import Homepage from "./components/Homepage";
+import Homepage from "./components/Homepage/Homepage.js";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import GenerateDesc from "./utils/generateDesc";
 
 function App(){
 
