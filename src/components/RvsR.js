@@ -75,7 +75,7 @@ function RvsR(props) {
       };  
 
     useEffect(() => {
-        fetch('https://newsdata.io/api/1/news?apikey=pub_19332709e568981e985f21187a879f94062f3&language=en')
+        fetch('https://newsdata.io/api/1/news?apikey=pub_19337c0d21c654df0435eff36fe6a5f093d8e&language=en')
             .then(response => response.json())
             .then(data => {
                 console.log(data);
@@ -160,7 +160,7 @@ function RvsR(props) {
         </Typography>
     </Toolbar>
         <div style={showLoading}>
-            <LoadingScreen />
+            <LoadingScreen title={title}/>
             </div>
             {data && (
                 <div style={showRvsR}>
