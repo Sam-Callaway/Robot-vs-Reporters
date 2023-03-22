@@ -6,6 +6,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 function GenerateDesc(props) {
+  console.log("chatGPT is running")
+  console.log(props.title)
   // Getters/setters for article header and description
   // const [articleHeader, setArticleHeader] = useState('');
   const [description, setDescription] = useState('');
@@ -14,6 +16,7 @@ function GenerateDesc(props) {
 
   // Generate description function
   const handleGenerateDescription = async () => {
+    if(props.title === ''){return;}// Avoid calling with no data
     try {
       console.log(OPENAI_KEY);
       // Create axios post request to chatGPT api
@@ -22,7 +25,7 @@ function GenerateDesc(props) {
         {
           // Determine api settings
           "model": "gpt-3.5-turbo",
-          "messages": [{"role": "user", "content": `Generate an article description from from the following header: ${props.title}!`}],
+          "messages": [{"role": "user", "content": `Generate an article using the following headline: ${props.title}!`}],
         },
         {
           headers: {
