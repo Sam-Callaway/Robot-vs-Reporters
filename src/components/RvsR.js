@@ -6,7 +6,7 @@ import env from 'react-dotenv';
 import { Grid,Box,Button,Toolbar,Typography,Switch,Paper } from '@mui/material';
 import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
-
+import LoadingScreen from "./LoadingScreen";
 // Grid item styling
 const Item = styled(Paper)(({ theme }) => ({
     ...theme.typography.body2,
@@ -14,7 +14,7 @@ const Item = styled(Paper)(({ theme }) => ({
     textAlign: 'center',
     color: theme.palette.text.secondary,
   }));
-import LoadingScreen from "./LoadingScreen";
+
 
 function RvsR(props) {
     // News API Data
@@ -154,11 +154,12 @@ function RvsR(props) {
           onChange={handleChange}
           align="right" 
           />
-            <div style={showLoading}>
-            <LoadingScreen />
-            </div>
+
         </Typography>
     </Toolbar>
+        <div style={showLoading}>
+            <LoadingScreen />
+            </div>
             {data && (
                 <div style={showRvsR}>
                     <h2 className="title">{title}</h2>
