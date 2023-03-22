@@ -20,7 +20,6 @@ function Homepage (props) {
     const [showRvsR, setShowRvsR] = useState(false);
     const [showHomepage, setShowHomepage] = useState(true);
     const [howToPlay, setHowToPlay] = useState(null);
-    //const [showLoadingScreen, setShowLoadingScreen] = useState(false);
     const [isDarkMode, setIsDarkMode] = useState(false);
 
   // Creating Dark Mode theme

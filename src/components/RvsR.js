@@ -107,8 +107,13 @@ function RvsR(props) {
     }
 
     const handleGenerateNumber = () => {
-        const randomNum = Math.floor(Math.random() * 10);
-        setNumber(randomNum);
+      console.log(number)
+        const randomNum = Math.floor(Math.random() * 9);
+        if (randomNum === number){             
+            if((randomNum+1) === 10)
+                {setNumber(0)}else{setNumber(randomNum+1)}            
+            }else{
+              setNumber(randomNum);}
 
     };
 
