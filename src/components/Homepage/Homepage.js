@@ -25,30 +25,46 @@ function Homepage (props) {
     const [howToPlay, setHowToPlay] = useState(null);
     const [isDarkMode, setIsDarkMode] = useState(false);
 
-  // Creating Dark Mode theme
     const lightTheme = createTheme({
-      palette: {
-        mode: 'light',
-        primary: {
-          main: '#007AFF',
+        palette: {
+          mode: 'light',
+          primary: {
+            main: '#6A1B9A',
+          },
+          secondary: {
+            main: '#4CAF50',
+          },
+          background: {
+            default: '#fbf3e5',
+          },
+          text: {
+            primary: '#F76F72',
+            secondary: '#4CAF50',
+          },
         },
-        secondary: {
-          main: '#FF3B30',
+      });
+    
+      const darkTheme = createTheme({
+        palette: {
+          mode: 'dark',
+          primary: {
+            main: '#007AFF',
+          },
+          secondary: {
+            main: '#FF3B30',
+          },
+          background: {
+            default: '#000000',
+          },
+          text: {
+            primary: '#13ED65',
+            secondary: '#4CAF50',
+          },
+          button: {
+            default: '#000000',
+          },
         },
-      },
-    });
-  
-    const darkTheme = createTheme({
-      palette: {
-        mode: 'dark',
-        primary: {
-          main: '#007AFF',
-        },
-        secondary: {
-          main: '#FF3B30',
-        },
-      },
-    });
+      });
   
     const theme = isDarkMode ? darkTheme : lightTheme;
   

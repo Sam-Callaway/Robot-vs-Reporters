@@ -48,44 +48,44 @@ function RvsR(props) {
     // Creating Dark Mode theme
     const lightTheme = createTheme({
         palette: {
-            mode: 'light',
-            primary: {
-                main: '#6A1B9A',
-            },
-            secondary: {
-                main: '#4CAF50',
-            },
-            background: {
-                default: '#D9D9D9',
-            },
-            text: {
-                primary: '#F76F72',
-                secondary: '#4CAF50',
-            },
+          mode: 'light',
+          primary: {
+            main: '#6A1B9A',
+          },
+          secondary: {
+            main: '#4CAF50',
+          },
+          background: {
+            default: '#fbf3e5',
+          },
+          text: {
+            primary: '#F76F72',
+            secondary: '#4CAF50',
+          },
         },
-    });
-
-    const darkTheme = createTheme({
+      });
+    
+      const darkTheme = createTheme({
         palette: {
-            mode: 'dark',
-            primary: {
-                main: '#007AFF',
-            },
-            secondary: {
-                main: '#FF3B30',
-            },
-            background: {
-                default: '#000000',
-            },
-            text: {
-                primary: '#13ED65',
-                secondary: '#4CAF50',
-            },
-            button: {
-                default: '#000000',
-            },
+          mode: 'dark',
+          primary: {
+            main: '#007AFF',
+          },
+          secondary: {
+            main: '#FF3B30',
+          },
+          background: {
+            default: '#000000',
+          },
+          text: {
+            primary: '#13ED65',
+            secondary: '#4CAF50',
+          },
+          button: {
+            default: '#000000',
+          },
         },
-    });
+      });
 
 
     const theme = isDarkMode ? darkTheme : lightTheme;
@@ -187,7 +187,7 @@ function RvsR(props) {
                 </div>
                 {data && (
                     <div style={showRvsR}>
-                        <h2 className="title">{title}</h2>
+                        <h2 className="title d-flex justify-content-center align-items-center">Article Title: {title}</h2>
                         <Box sx={{ flexGrow: 1 }}>
 
                             {isSwapped ? (
