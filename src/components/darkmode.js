@@ -4,6 +4,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import { Typography } from '@mui/material';
 
+
 // Adding Dark Mode button
 export default function DarkModeSwitch() {
     const [isDarkMode, setIsDarkMode] = useState(false);
@@ -12,10 +13,17 @@ export default function DarkModeSwitch() {
       palette: {
         mode: 'light',
         primary: {
-          main: '#007AFF',
+          main: '#6A1B9A',
         },
         secondary: {
-          main: '#FF3B30',
+          main: '#4CAF50',
+        },
+        background: {
+          default: '#D9D9D9',
+        },
+        text: {
+          primary: '#F76F72',
+          secondary: '#4CAF50',
         },
       },
     });
@@ -28,6 +36,16 @@ export default function DarkModeSwitch() {
         },
         secondary: {
           main: '#FF3B30',
+        },
+        background: {
+          default: '#000000',
+        },
+        text: {
+          primary: '#13ED65',
+          secondary: '#4CAF50',
+        },
+        button: {
+          default: '#000000',
         },
       },
     });
