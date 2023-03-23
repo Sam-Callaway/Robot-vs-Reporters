@@ -26,6 +26,7 @@ function LoadingScreen (props){
       },[props.title]);
 return(
     <div className="d-flex justify-content-center align-items-center" style={{height: "110vh"}}>
+    <img src={logo} className="App-logo" alt="logo" />
     <h4 >{message}</h4>
     </div>
     )
