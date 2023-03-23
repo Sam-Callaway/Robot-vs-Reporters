@@ -223,13 +223,13 @@ function RvsR(props) {
                                     spacing={2}
                                 >
                                     <Grid item xs={6}>
-                                        <Card variant="outlined" sx={{ height: '400px', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+                                        <Card variant="outlined" sx={{ height: '400px', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', padding: '20px' }}>
                                             <GenerateDesc gptIsLoaded={gptIsLoaded} title={title} />
                                             <Button onClick={checkAnswer} variant="outlined" id="chatGPT">This is the real description!</Button>
                                         </Card>
                                     </Grid>
                                     <Grid item xs={6}>
-                                        <Card variant="outlined" sx={{ height: '400px', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+                                        <Card variant="outlined" sx={{ height: '400px', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', padding: '20px' }}>
                                             <h2> Description: </h2>
                                             <p className="content">{content}</p>
                                             <Button onClick={checkAnswer} variant="outlined" id="journalist"> This is the real description!</Button>
@@ -240,7 +240,7 @@ function RvsR(props) {
                             <Grid
                                 container
                                 justifyContent="center"
-                                colums={12}
+                                columns={12}
                                 sx={{ paddingTop: "20px" }}
                             >
                                 <Grid item xs={12}>
