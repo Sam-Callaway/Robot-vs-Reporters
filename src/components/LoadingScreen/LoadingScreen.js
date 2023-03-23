@@ -3,7 +3,7 @@ import DarkModeSwitch from '../darkmode';
 import Toolbar from '@mui/material/Toolbar';
 import { Typography } from '@mui/material';
 import logo from './logo.svg';
-import './App.css';
+import './LoadingScreen.css';
 
 function LoadingScreen (props){
     
@@ -27,9 +27,13 @@ function LoadingScreen (props){
         newMessage();
       },[props.title]);
 return(
-    <div className="d-flex justify-content-center align-items-center" style={{height: "110vh"}}>
-    <img src={logo} className="App-logo" alt="logo" />
-    <h4 >{message}</h4>
+    <div>
+        <div className="d-flex justify-content-center align-items-center" style={{height: "60vh"}}>
+        <img src={logo} className="App-logo" alt="logo" />
+        </div>
+        <div className="d-flex justify-content-center align-items-center" style={{height: "10vh"}}>
+        <h4 >{message}</h4>
+        </div>
     </div>
     )
 }
