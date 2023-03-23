@@ -2,6 +2,8 @@ import React, {useEffect, useState} from "react";
 import DarkModeSwitch from '../darkmode';
 import Toolbar from '@mui/material/Toolbar';
 import { Typography } from '@mui/material';
+import logo from './logo.svg';
+import './App.css';
 
 function LoadingScreen (props){
     
