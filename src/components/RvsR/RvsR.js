@@ -200,14 +200,14 @@ function RvsR(props) {
                                         spacing={4}
                                     >
                                         <Grid item xs={6}>
-                                            <Card variant="outlined" sx={{ height: '400px' }}>
+                                            <Card variant="outlined"sx={{ height: '400px', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
                                                 <h2> Description: </h2>
                                                 <p className="content">{content}</p>
                                                 <Button variant="outlined" onClick={checkAnswer} id="journalist"> This is the real description!</Button>
                                             </Card>
                                         </Grid>
                                         <Grid item xs={6}>
-                                            <Card variant="outlined" sx={{ height: '400px' }}>
+                                            <Card variant="outlined"sx={{ height: '400px', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
                                                 <GenerateDesc gptIsLoaded={gptIsLoaded} title={title} />
                                                 <Button variant="outlined" onClick={checkAnswer} id="chatGPT">This is the real description!</Button>
                                             </Card>
@@ -223,13 +223,13 @@ function RvsR(props) {
                                     spacing={2}
                                 >
                                     <Grid item xs={6}>
-                                        <Card variant="outlined" sx={{ height: '400px' }}>
+                                        <Card variant="outlined" sx={{ height: '400px', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
                                             <GenerateDesc gptIsLoaded={gptIsLoaded} title={title} />
                                             <Button onClick={checkAnswer} variant="outlined" id="chatGPT">This is the real description!</Button>
                                         </Card>
                                     </Grid>
                                     <Grid item xs={6}>
-                                        <Card variant="outlined" sx={{ height: '400px' }}>
+                                        <Card variant="outlined" sx={{ height: '400px', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
                                             <h2> Description: </h2>
                                             <p className="content">{content}</p>
                                             <Button onClick={checkAnswer} variant="outlined" id="journalist"> This is the real description!</Button>
@@ -244,10 +244,10 @@ function RvsR(props) {
                                 sx={{ paddingTop: "20px" }}
                             >
                                 <Grid item xs={12}>
-                                    <Card variant="outlined">
+                                    <Card variant="outlined" sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
                                         <h2 className='d-flex align-items-center justify-content-center'>{rightOrWrong}</h2>
                                         <h2 className='d-flex align-items-center justify-content-center'>Robots: {robotScore} vs  Reporters: {reportScore}</h2>
-                                        <Button variant="outlined" onClick={handleNextRound}>{nextRound}</Button>
+                                        <Button variant="outlined" onClick={handleNextRound} >{nextRound}</Button>
                                     </Card>
                                 </Grid>
                             </Grid>

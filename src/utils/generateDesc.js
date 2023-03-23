@@ -46,8 +46,8 @@ function GenerateDesc(props) {
       
       {description && (
         <>
-          <h2> Description:</h2>
-          <p>{description}</p>
+          <h2 className='d-flex align-items-center justify-content-center'> Description:</h2>
+          <p className='d-flex align-items-center justify-content-center'>{description}</p>
         </>
       )}
     </div>
