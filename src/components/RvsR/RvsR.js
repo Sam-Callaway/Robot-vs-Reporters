@@ -223,17 +223,19 @@ function RvsR(props) {
                                     spacing={2}
                                 >
                                     <Grid item xs={6}>
-                                        <Card variant="outlined" sx={{ height: '400px', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', padding: '20px' }}>
+                                        <div>
+                                        <Card variant="outlined" sx={{ height: '400px', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'top', padding: '40px' }}>
                                             <GenerateDesc gptIsLoaded={gptIsLoaded} title={title} />
-                                            <Button onClick={checkAnswer} variant="outlined" id="chatGPT">This is the real description!</Button>
                                         </Card>
+                                            <Button onClick={checkAnswer} variant="outlined" id="chatGPT">This is the real description!</Button>
+                                        </div>
                                     </Grid>
                                     <Grid item xs={6}>
-                                        <Card variant="outlined" sx={{ height: '400px', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', padding: '20px' }}>
+                                        <Card variant="outlined" sx={{ height: '400px', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'top', padding: '40px' }}>
                                             <h2> Description: </h2>
                                             <p className="content">{content}</p>
-                                            <Button onClick={checkAnswer} variant="outlined" id="journalist"> This is the real description!</Button>
                                         </Card>
+                                            <Button onClick={checkAnswer} variant="outlined" id="journalist"> This is the real description!</Button>
                                     </Grid>
                                 </Grid>
                             </>)}
