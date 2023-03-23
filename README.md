@@ -24,7 +24,7 @@ Question 2:
 Run the website, click on how to play, and press the start button. 
 
 ## Deployed Site
-https://effortless-puppy-06f8c4.netlify.app/
+https://robotvsreporters.netlify.app/
 
 ## Contributors
 Sebastian Jones : https://github.com/sebastianj0nes
